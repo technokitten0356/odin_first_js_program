@@ -10,8 +10,13 @@ let computerScore = 0
 
 function playerPrompt(){
     let playerInput = prompt("Rock, Paper, or Scissors?")
-    return playerInput
+    return playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase()
 }
 
 console.log(playerChoice)
 
+function computerPlay(){
+    return gameOptions[Math.floor(Math.random() * gameOptions.length)]
+}
+
+console.log(computerPlay())
