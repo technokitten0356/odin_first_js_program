@@ -19,28 +19,31 @@ function computerPlay(){
 
 }
 
-// ------------------------------------------------------------------//
-
 function playRound(playerSelection, computerSelection){
     console.log(`Player choice is ${playerChoice}, computer choice is ${computerChoice}`)
     if (playerSelection === computerSelection){
         playerWin = false
         computerWin = false
-        console.log(`playerWin is ${playerWin} and computerWin is ${computerWin}`)
+        console.log(`It's a tie!`)
     } else if (playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Paper" && computerSelection === "Rock" ||playerSelection === "Scissors" && computerSelection === "Paper"){
         playerWin = true
         computerWin = false
-        console.log(`playerWin is ${playerWin} and computerWin is ${computerWin}`)
-        return `You win this round! ${playerSelection} beats ${computerSelection}!`
+        console.log(`You win this round! ${playerSelection} beats ${computerSelection}!`)
     } else if (playerSelection === "Scissors" && computerSelection === "Rock" || playerSelection === "Rock" && computerSelection === "Paper" || playerSelection === "Paper" && computerSelection === "Scissors"){
         playerWin = false
         computerWin = true
-        console.log(`playerWin is ${playerWin} and computerWin is ${computerWin}`)
-        return `You lose this round! ${computerSelection} beats ${playerSelection}!`
+        console.log(`You lose this round! ${computerSelection} beats ${playerSelection}!`)
     }
 }
 
-playRound(playerChoice, computerChoice)
+function keepingScore(){
+    if (playerWin === true && computerWin === false){
+        playerScore += 1
+    } else if (playerWin === false && computerWin === true){
+        computerScore += 1
+    }
+    console.log(`Player score: ${playerScore}. Computer score: ${computerScore}`)
+}
 
 function reset(){
     playerChoice = playerPrompt()
@@ -48,20 +51,19 @@ function reset(){
 }
 
 function game(){
-    playRound(playerChoice, computerChoice)
-    reset()
-    playRound(playerChoice, computerChoice)
-    reset()
-    playRound(playerChoice, computerChoice)
-    reset()
-    playRound(playerChoice, computerChoice)
-    reset()
-    playRound(playerChoice, computerChoice)
+    let i = 0;
 
+    while (i < 4){
+        playRound(playerChoice, computerChoice)
+        keepingScore()
+        reset()
+        i++
+    }
+    
     if (playerScore > computerScore){
         console.log(`You win! Computer loses!`)
     } else if (computerScore > playerScore){
-    console.log(`You lose! Computer wins!`)
+        console.log(`You lose! Computer wins!`)
     }
 }
 
