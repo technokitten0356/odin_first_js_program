@@ -41,3 +41,28 @@ function playRound(playerSelection, computerSelection){
 }
 
 playRound(playerChoice, computerChoice)
+
+function reset(){
+    playerChoice = playerPrompt()
+    computerChoice = computerPlay()
+}
+
+function game(){
+    playRound(playerChoice, computerChoice)
+    reset()
+    playRound(playerChoice, computerChoice)
+    reset()
+    playRound(playerChoice, computerChoice)
+    reset()
+    playRound(playerChoice, computerChoice)
+    reset()
+    playRound(playerChoice, computerChoice)
+
+    if (playerScore > computerScore){
+        console.log(`You win! Computer loses!`)
+    } else if (computerScore > playerScore){
+    console.log(`You lose! Computer wins!`)
+    }
+}
+
+game()
